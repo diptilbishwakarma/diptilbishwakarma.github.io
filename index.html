@@ -16,30 +16,27 @@
     </div>
 
     <div class="infor">
-        <div class="img">
-            <img src="images/Diptil_pro.JPG" alt="Diptil's Picture" width="400px" height="300px">
-        </div>
+        <div class="settings">
+            <div class="set_color">
+                <div id="settin">
+                    <h2>Settings</h2>
+                </div>
+                <label for="color">Choose a color:</label>
 
-    <div class="settings">
-        <div class="set_color">
-            <div id="settin">
-                <h2>Settings</h2>
+                <label for="light"></label>
+                <input type="button" id="light" name="color" value="light" onclick="setLight()">
+                <label for="dark"></label>
+                <input type="button" id="dark" name="color" value="dark" onclick="setDark()">
+                <label for="default"></label>
+                <input type="button" id="default" name="color" value="default" onclick="setDefault()">
             </div>
-            <label for="color">Choose a color:</label>
-
-            <label for="light"></label>
-            <input type="button" id="light" name="color" value="light" onclick="setLight()">
-            <label for="dark"></label>
-            <input type="button" id="dark" name="color" value="dark" onclick="setDark()">
-            <label for="default"></label>
-            <input type="button" id="default" name="color" value="default" onclick="setDefault()">
+            <p id = "stats_theme">Current Page Theme: Default</p>
         </div>
-        <div class="stats_theme">
-            <p>Current Page Theme: Default</p>
-        </div>
-    </div>
 
         <div class="desc">
+            <div class="img">
+                <img src="images/Diptil_pro.JPG" alt="Diptil's Picture" width="400px" height="300px">
+            </div>
             <p>
                 Hello there!! <br>
                 Welcome to my personal portfolio.
@@ -64,11 +61,14 @@
         <p>Please stay tuned for more fun in this webpage which would be made possible using javascript.</p>
     </div>
 
-    <div class="cpyrt">
-        <p>
-            &copy; Copyright 2025 Diptil Bishwakarma. All rights reserved.
-        </p>
-    </div>
+    <footer>
+        <div class="cpyrt">
+            <p>
+                &copy; Copyright 2025 Diptil Bishwakarma. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
 
 </body>
 </html>   
