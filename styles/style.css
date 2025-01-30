@@ -89,3 +89,8 @@ body.light_mode .desc{
 .stats_theme {
     text-align: center;
 }
+
+.jvscrpt a {
+    color: white;
+    text-decoration: none;
+}
