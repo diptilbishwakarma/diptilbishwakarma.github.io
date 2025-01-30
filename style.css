@@ -6,6 +6,32 @@ body {
 
 }
 
+body.dark_mode {
+    background-color: black;
+    color: white;
+}
+
+body.dark_mode  .hdng h1{
+    color: white;
+}
+
+body.dark_mode  .desc{
+    color: white;
+}
+
+body.light_mode {
+    background-color: white;
+    color: black;
+}
+
+body.light_mode .hdng h1{
+    color: black;
+}
+
+body.light_mode .desc{
+    color: black;
+}
+
 .hdng {
     text-align: center;
     font-size: 24px;
@@ -46,4 +72,20 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
+}
+
+.settings {
+    top: 10px;
+    right: 10px;
+    position: fixed;
+    z-index: 1000;
+
+}
+
+#settin {
+    text-align: center;
+}
+
+.stats_theme {
+    text-align: center;
 }
