@@ -7,6 +7,7 @@
     <meta author = "Diptil Bishwakarma">
     <title>Diptil's Portfolio</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="scripts/script.js"></script>
 </head>
 <body>
     <div class="hdng">
@@ -18,6 +19,25 @@
         <div class="img">
             <img src="Diptil_pro.JPG" alt="Diptil's Picture" width="400px" height="300px">
         </div>
+
+    <div class="settings">
+        <div class="set_color">
+            <div id="settin">
+                <h2>Settings</h2
+            ></div>
+            <label for="color">Choose a color:</label>
+
+            <label for="light">Light</label>
+            <input type="radio" id="light" name="color" value="light" onclick="setLight()">
+            <label for="dark">Dark</label>
+            <input type="radio" id="dark" name="color" value="dark" onclick="setDark()">
+            <label for="default">Default</label>
+            <input type="radio" id="default" name="color" value="default" onclick="setDefault()">
+        </div>
+        <div class="stats_theme">
+            <p>Current Page Theme: Default</p>
+        </div>
+    </div>
 
         <div class="desc">
             <p>
