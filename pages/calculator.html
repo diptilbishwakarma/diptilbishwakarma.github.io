@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Portfolio, Diptil, Bishwakarma">
+    <meta author = "Diptil Bishwakarma">
+    <title>Arithmetic Calculator</title>
+    <link rel="stylesheet" type="text/css" href="../styles/style.css">
+    <script src="../scripts/script.js"></script>
+</head>
+<body>
+    <div class="hdng">
+        <h1>Arithmetic Calculator</h1>
+    </div>
+    <p>
+        Welcome to my Arithmetic Calculator. This calculaor will calculate the perimeter and area of a Triangle.
+        This calculator will also find the volume of a Pyramid (a 3D equivalent of a Triangle).
+        Please type in your input about the datas for them below.
+    </p>
+    <div id="perimtr">
+        <h2>Perimeter of a Triangle</h2>
+        <label for="side1">Please enter the length of side 1:</label>
+        <input type="number" id="side1" name="sides" value="side1">
+        <label for="side2">Please enter the length of side 2:</label>
+        <input type="number" id="side2" name="sides" value="side2">
+        <label for="side3">Please enter the length of side 3:</label>
+        <input type="number" id="side3" name="sides" value="side3">
+        <button onclick="perimeter()">Calculate Perimeter</button>
+        <b>
+            <p id="perimtr_result">
+                The perimeter of the triangle is:
+            </p>
+        </b>
+        <div id="perimeter_img">
+            <img src="../images/perimeter_img.png" alt="Perimeter of a Triangle" width="400px" height="300px">
+        </div>
+    </div>
+    <div id="area">
+        <h2>Area of a Triangle</h2>
+        <label for="a_base">Please enter the length of the base:</label>
+        <input type="number" id="a_base" name="sides" value="a_base">
+        <label for="a_height">Please enter the height:</label>
+        <input type="number" id="a_height" name="sides" value="a_height">
+        <button onclick="area()">Calculate Area</button>
+        <b>
+            <p id="area_result">
+                The area of the triangle is:
+            </p>
+        </b>
+        <div id="area_img">
+            <img src="../images/area_img.png" alt="Area of a Triangle" width="400px" height="300px">
+        </div>
+    </div>
+    <div id="volume">
+        <h2>Volume of a Pyramid</h2>
+        <label for="v_base">Please enter the length of the base:</label>
+        <input type="number" id="v_base" name="sides" value="v_base">
+        <label for="v_width">Please enter the width of the :</label>
+        <input type="number" id="v_width" name="sides" value="v_width">
+        <label for="v_height">Please enter the height of the pyramid:</label>
+        <input type="number" id="v_height" name="sides" value="v_height">
+        <button onclick="volume()">Calculate Volume</button>
+        <b>
+            <p id="vlm_result">
+                The volume of the pyramid is:
+            </p>
+        </b>
+        <div id="volume_img">
+            <img src="../images/volume_img.png" alt="Volume of a Pyramid" width="400px" height="300px">
+        </div>
+    </div>
+</body>
+</html>
