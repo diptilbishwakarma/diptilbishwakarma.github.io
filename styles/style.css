@@ -1,3 +1,6 @@
+#ttc_game {
+    background-color: antiquewhite;
+}
 body {
     text-align: auto;
     background-color: #9181ac;
@@ -98,14 +101,12 @@ body.light_mode .desc{
 #t_buttons button {
     width: 50px;
     height: 50px;
+    font-size: 30px;
+    font-weight: bold;
 }
 
 #reset_game {
     width: 70px;
     height: 40px;
-}
-
-#check_winner {
-    width: 70px;
-    height: 40px;
+    margin: 8px;
 }

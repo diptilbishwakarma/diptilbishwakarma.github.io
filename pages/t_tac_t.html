@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="../styles/style.css">
     <script src="../scripts/ttc_game.js"></script>
 </head>
-<body>
+<body id = "ttc_game">
     <h1>Tic-Tac-Toe</h1>
     <table id="t_buttons">
         <tr>
@@ -28,10 +28,8 @@
             <td><button id="c3" onclick="changeMark('c3')"></button></td>
         </tr>
     </table>
-    <p id="ttc_winner">
-    </p>
+    <p id="ttc_winner"></p>
 
     <button id="reset_game" onclick="resetGame()">Reset</button><br><br>
-    <button id="check_winner" onclick="checkWin()">Check Winner</button>
 </body>
 </html>
