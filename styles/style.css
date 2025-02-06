@@ -94,3 +94,18 @@ body.light_mode .desc{
     color: white;
     text-decoration: none;
 }
+
+#t_buttons button {
+    width: 50px;
+    height: 50px;
+}
+
+#reset_game {
+    width: 70px;
+    height: 40px;
+}
+
+#check_winner {
+    width: 70px;
+    height: 40px;
+}

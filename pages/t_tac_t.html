@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta author = "Diptil Bishwakarma">
+	<title>Tic Tac Toe</title>
+    <link rel="stylesheet" type="text/css" href="../styles/style.css">
+    <script src="../scripts/ttc_game.js"></script>
+</head>
+<body>
+    <h1>Tic-Tac-Toe</h1>
+    <table id="t_buttons">
+        <tr>
+            <td><button id="a1" onclick="changeMark('a1')"></button></td>
+            <td><button id="b1" onclick="changeMark('b1')"></button></td>
+            <td><button id="c1" onclick="changeMark('c1')"></button></td>
+        </tr>
+        <tr>
+            <td><button id="a2" onclick="changeMark('a2')"></button></td>
+            <td><button id="b2" onclick="changeMark('b2')"></button></td>
+            <td><button id="c2" onclick="changeMark('c2')"></button></td>
+        </tr>
+        <tr>
+            <td><button id="a3" onclick="changeMark('a3')"></button></td>
+            <td><button id="b3" onclick="changeMark('b3')"></button></td>
+            <td><button id="c3" onclick="changeMark('c3')"></button></td>
+        </tr>
+    </table>
+    <p id="ttc_winner">
+    </p>
+
+    <button id="reset_game" onclick="resetGame()">Reset</button><br><br>
+    <button id="check_winner" onclick="checkWin()">Check Winner</button>
+</body>
+</html>
