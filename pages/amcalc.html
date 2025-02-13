@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Portfolio, Diptil, Bishwakarma">
+    <meta author = "Diptil Bishwakarma">
+    <title>Arithmetic Mean Calculator</title>
+    <link rel="stylesheet" type="text/css" href="../styles/style.css">
+</head>
+<body id="amcalc_bdy">
+    <h1>Arithmetic Mean Calculator</h1>
+    <p>
+        Welcome to the Arithmetic Mean Calculator which you can use to calculate the mean of the numbers that you store.
+    </p>
+    <h3>Data Entry</h3>
+    <label for="dValue">Please enter a value:</label>
+    <input type="number" id="dValue" name="data_value">
+    <button onclick="add_dv()">Add Value</button>
+    <button onclick="rem_dv()">Remove value</button>
+    <h3>Current Dataset</h3>
+    <p id="c_d_values">
+
+    </p>
+    <h3>Current Mean</h3>
+    <p id="am_mean">
+        Mean:
+    </p>
+
+    <script src="../scripts/amcalc.js"></script>
+    
+</body>
+</html>

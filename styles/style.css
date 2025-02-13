@@ -110,3 +110,7 @@ body.light_mode .desc{
     height: 40px;
     margin: 8px;
 }
+
+#amcalc_bdy {
+    margin: 10px;
+}
