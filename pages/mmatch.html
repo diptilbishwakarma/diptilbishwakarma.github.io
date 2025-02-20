@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Portfolio, Diptil, Bishwakarma">
+    <meta author = "Diptil Bishwakarma">
+    <title>Memory Match</title>
+    <style>
+        body {
+            background-color: darkgray;
+        }
+        .tile {
+            font-size: xx-large;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            background-color: rgb(33, 210, 157);
+            text-align: center;
+        }
+
+        td {
+            width: 55px;
+            height: 55px;
+            background-color: rgb(33, 210, 157);
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Memory Match Game</h1>
+    <p><button onclick="resetBoard()">Reset Game</button></p>
+    <div id="gameBoard"></div>
+
+    <script>
+
+        let map = [];
+        let tile1 = null, tile2 = null;
+
+        const shuffle = (array) => {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        };
+
+        const loadMap = (rows = 4, cols = 4) => {
+            if ((rows * cols) % 2 !== 0) {
+                console.log("The total number of tiles must be even.");
+                return [];
+            }
+
+            const maxTileValue = (rows * cols) / 2;
+
+            let tilePairs = [];
+
+            for (let i = 1; i <= maxTileValue; i++) {
+                tilePairs.push(i, i);
+            }
+
+            tilePairs = shuffle(tilePairs);
+            let tileMap = [];
+
+            for (let r = 0; r < rows; r++) {
+                tileMap.push(tilePairs.splice(0, cols));
+            }
+
+            return tileMap;
+        };
+
+        const makeBoard = (rows = 4, cols = 4) => {
+            let output = '<table>';
+            for (let row = 0; row < rows; row++) {
+                output += '<tr>';
+                for (let col = 0; col < cols; col++) {
+                    output += '<td><button' +
+                        ' class="tile"' +
+                        ' id="' + row + '_' + col + '"' +
+                        ' onclick="process(' + row + ',' + col + ')">' +
+                        '</button></td>';
+                }
+                output += '</tr>';
+            }
+            output += '</table>';
+            document.getElementById("gameBoard").innerHTML = output;
+        };
+
+        const resetBoard = () => {
+            tile1 = null;
+            tile2 = null;
+            map = loadMap();
+            makeBoard();
+        };
+
+        const process = (row, col) => {
+            let clicked_tile = document.getElementById(row + "_" + col);
+
+            if (!clicked_tile.innerHTML) {
+                if (!tile1) {
+                    tile1 = clicked_tile;
+                    clicked_tile.innerHTML = map[row][col];
+                } else if (!tile2) {
+                    tile2 = clicked_tile;
+                    clicked_tile.innerHTML = map[row][col];
+
+                    setTimeout(checkMatch, 1000);
+                }
+            }
+        };
+
+        const checkMatch = () => {
+            if (tile1.innerHTML === tile2.innerHTML) {
+                tile1.hidden = true;
+                tile2.hidden = true;
+            } else {
+                tile1.innerHTML = "";
+                tile2.innerHTML = "";
+            }
+
+            tile1 = null;
+            tile2 = null;
+        };
+
+        resetBoard();
+        
+    </script>
+</body>
+</html>
