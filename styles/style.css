@@ -55,15 +55,15 @@ body.light_mode .desc{
     margin: 8px;
 }
 
+.infor {
+    display: flex;
+}
+
 .jvscrpt {
     text-align: center;
     background-color: rgb(90, 37, 91);
     padding: 8px;
     font-size: 24px;
-    bottom: 120px;
-    position: fixed;
-    width: 100%;
-    left: 0;
 }
 
 .cpyrt {
@@ -71,10 +71,6 @@ body.light_mode .desc{
     background-color: #9181ac;
     padding: 8px;
     font-size: 24px;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
 }
 
 .settings {
