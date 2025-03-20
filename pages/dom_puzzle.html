@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>DOM Puzzle</title>
+
+    <style>
+
+        /* NOTE: Do NOT modify this stylesheet */
+
+        #puzzle { width: 500px; height: 500px; border: 5px solid black;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- NOTE: Do NOT modify the body or div -->
+
+    <div id='puzzle'></div>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", () => {
+
+            let header = document.createElement("h1");
+            header.textContent = "DOM Puzzle";
+            header.style.textAlign = "left"; 
+            header.style.fontSize = "28px"; 
+            header.style.fontWeight = "bold";
+            document.body.insertBefore(header, document.getElementById("puzzle"));
+
+            let puzzle = document.getElementById("puzzle");
+            puzzle.style.display = "grid";
+            puzzle.style.gridTemplateColumns = "250px 250px";       //This wasn't discussed in class. Found this on W3schools on using grid to divide the space within the puzzle to two columns with specified size
+            puzzle.style.gridTemplateRows = "250px 250px";          //This wasn't discussed in class. Found this on W3schools on using grid to divide the space within the puzzle to two rows with specified size
+            puzzle.style.backgroundColor = "#7338A0";
+
+            puzzle.addEventListener("mouseenter", (event) => {
+                event.preventDefault();
+                puzzle.style.border = "5px solid #FF9E00";
+            });
+
+            puzzle.addEventListener("mouseleave", (event) => {
+                event.preventDefault();
+                puzzle.style.border = "5px solid black";
+            });
+
+            const create_button = (label, color) => {
+                let button = document.createElement("button");
+                button.textContent = label;
+                button.style.width = "125px";
+                button.style.height = "125px";
+                button.style.fontSize = "20px";
+                button.style.backgroundColor = color;
+                return button;
+            };
+
+            let top_left_cont = document.createElement("div");
+            top_left_cont.style.display = "grid";
+            top_left_cont.style.gridTemplateColumns = "125px 125px";    //This wasn't discussed in class. Found this on W3schools on using grid to divide the space within the puzzle to two columns with specified size
+            top_left_cont.style.gridTemplateRows = "125px 125px";       //This wasn't discussed in class. Found this on W3schools on using grid to divide the space within the puzzle to two rows with specified size
+
+            let button_colors = ["#9455F4", "#4A2B74", "#594492", "#854DDC"];
+            let labels = ["A", "B", "C", "D"];
+
+            labels.forEach((label, i) => {
+                top_left_cont.appendChild(create_button(label, button_colors[i]))
+            });
+            puzzle.appendChild(top_left_cont);
+
+            let top_right_cont = document.createElement("div");
+            puzzle.appendChild(top_right_cont);
+
+            let bottom_left_cont = document.createElement("div");
+            puzzle.appendChild(bottom_left_cont);
+
+            let grid_container = document.createElement("div");
+            grid_container.style.display = "grid";
+            grid_container.style.gridTemplateColumns = "repeat(10, 25px)";
+            grid_container.style.gridTemplateRows = "repeat(10, 25px)";
+            grid_container.style.width = "250px";
+            grid_container.style.height = "250px";
+
+            let smallButtons = [];
+
+            const create_small_buttons = (row, col) => {
+                let button = document.createElement("button");
+                button.style.width = "25px";
+                button.style.height = "24px";
+                button.style.backgroundColor = "#C39CFE";
+                button.style.border = "1px solid black";
+
+                button.addEventListener("click", (event) => {
+                    event.preventDefault();
+
+                    button.style.backgroundColor = "#4A2574";
+
+                    if (col > 0) {
+                        smallButtons[row][col - 1].style.backgroundColor = "#FF9E00";
+                    }
+                    if (col < 9) {
+                        smallButtons[row][col + 1].style.backgroundColor = "#FF9E00";
+                    }
+                });
+
+                return button;
+            };
+
+            for (let row = 0; row < 10; row++) {
+                smallButtons[row] = [];
+                for (let col = 0; col < 10; col++) {
+                    let button = create_small_buttons(row, col);
+                    smallButtons[row].push(button);
+                    grid_container.appendChild(button);
+                }
+            }
+
+            puzzle.appendChild(grid_container);
+
+            let description = document.createElement("p");
+            description.textContent = "This is a puzzle created entirely with JavaScript.";
+            description.style.textAlign = "left";
+            description.style.fontSize = "14px";
+            document.body.appendChild(description);
+        });
+    
+    </script>
+
+</body>
+
+</html>
