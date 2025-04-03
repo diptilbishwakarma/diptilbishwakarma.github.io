@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <style>
+        .dark {
+            background-color: #333;
+            color: white;
+        }
+        .light {
+            background-color: white;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>To-Do List</h1>
+    <form id="toDoForm">
+        <label for="to_do">Task:</label>
+        <input type="text" id="tasks" name="task" placeholder="Type here..." required>
+        <button onclick="add_to_do()" type="submit">Add Task</button>
+    </form>
+
+    <p><b>Tasks Added this session: </b><span id="tasks_count">0</span> </p>
+    <ul id="to_do_list"></ul>
+
+    <button id="toggle_theme">Toggle theme: Dark/White</button>
+
+    <h3 id="quotes">Motivational Quote Of The Day:</h3>
+    <p id="quotes_load"></p><br>
+    <button id="load_quote">Load Quote</button>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            const to_do_form = document.getElementById("toDoForm");
+            const tasks = document.getElementById("tasks");
+            const to_do_list = document.getElementById("to_do_list");
+            const tasks_count = document.getElementById("tasks_count");
+            const toggle_theme = document.getElementById("toggle_theme");
+            const quotes_load = document.getElementById("quotes_load");
+            const load_quote = document.getElementById("load_quote");
+
+
+            show_to_do_list();
+            update_task_count();
+            apply_saved_theme();
+            fetch_quote();
+
+            to_do_form.addEventListener("submit", (event) => {
+                event.preventDefault();
+                add_to_do(event);
+            });
+
+            function add_to_do(event) {
+                event.preventDefault();
+                const to_do = tasks.value;
+
+                const to_do_list = JSON.parse(localStorage.getItem("to_do_list")) || [];
+                to_do_list.push(to_do);
+                localStorage.setItem("to_do_list", JSON.stringify(to_do_list));
+
+                document.getElementById("toDoForm").reset();
+                update_task_count();
+                show_to_do_list();
+            }
+
+            function show_to_do_list() {
+                var to_do_list = JSON.parse(localStorage.getItem("to_do_list")) || [];
+                var to_do_list_element = document.getElementById("to_do_list");
+                to_do_list_element.innerHTML = "";
+
+                to_do_list.forEach((task, index) => {
+                    var li = document.createElement("li");
+                        li.textContent = task + " ";
+
+                    var delete_button = document.createElement("button");        //Learned this to create a break betweeen tasks so that it doesn't look cramped with each other
+                    delete_button.textContent = "Remove";
+                    delete_button.onclick = function() {
+                        remove_task(index);
+                    };
+                    li.appendChild(delete_button);
+                    to_do_list_element.appendChild(li);
+                });
+            }
+
+            function remove_task(index) {
+                let to_do_list_data = JSON.parse(localStorage.getItem("to_do_list")) || [];
+                to_do_list_data.splice(index, 1);
+                localStorage.setItem("to_do_list", JSON.stringify(to_do_list_data));
+
+                update_task_count();
+                show_to_do_list();
+            }
+
+
+            function update_task_count() {
+                var to_do_list = JSON.parse(localStorage.getItem("to_do_list")) || [];
+                document.getElementById("tasks_count").textContent = to_do_list.length;
+            }
+
+            function getCookie(name) {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    let cookie = cookies[i].trim();
+                    if (cookie.startsWith(name + '=')) {
+                        return cookie.substring(name.length + 1);
+                    }
+                }
+                return null;
+            }
+
+            function apply_saved_theme() {
+                var theme = getCookie("theme") || "light";
+                document.body.className = theme;
+            }
+
+            document.getElementById("toggle_theme").addEventListener("click", function() {
+                var current_theme = localStorage.getItem("theme") || "light";
+                var new_theme = current_theme === "light" ? "dark" : "light";
+                localStorage.setItem("theme", new_theme);
+                document.body.className = new_theme;
+            });
+
+            async function fetch_quote() {
+                try {
+                    const response = await fetch("https://dog.ceo/api/breeds/image/random");
+                    const data = await response.json();
+                    console.log(data);
+                    quotes_load.innerHTML = `<img src="${data.message}" alt="Random Dog Image" width="300">`;
+                } catch (error) {
+                    quotes_load.textContent = "Unable to load quote at this time.";
+                }
+            }
+
+            load_quote.addEventListener("click", fetch_quote);
+
+        });
+
+        
+    </script>
+</body>
+</html>
