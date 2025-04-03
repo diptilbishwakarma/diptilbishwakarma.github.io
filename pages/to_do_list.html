@@ -24,7 +24,7 @@
         <button onclick="add_to_do()" type="submit">Add Task</button>
     </form>
 
-    <p><b>Tasks Added this session: </b><span id="tasks_count">0</span> </p>
+    <p><b>Tasks remaining in this session: </b><span id="tasks_count">0</span> </p>
     <ul id="to_do_list"></ul>
 
     <button id="toggle_theme">Toggle theme: Dark/White</button>
@@ -47,7 +47,6 @@
 
             show_to_do_list();
             update_task_count();
-            apply_saved_theme();
             fetch_quote();
 
             to_do_form.addEventListener("submit", (event) => {
@@ -102,35 +101,49 @@
                 document.getElementById("tasks_count").textContent = to_do_list.length;
             }
 
-            function getCookie(name) {
-                const cookies = document.cookie.split(';');
-                for (let i = 0; i < cookies.length; i++) {
-                    let cookie = cookies[i].trim();
-                    if (cookie.startsWith(name + '=')) {
-                        return cookie.substring(name.length + 1);
+            function setTheme(theme) {
+                document.body.classList.remove("dark", "light");
+                document.body.classList.add(theme);
+                let date = new Date();
+                date.setTime(date.getTime() + (24 * 60 * 60 * 1000));
+                document.cookie = "theme=" + theme + "; expires=" + date.toUTCString() + "; path=/";
+            }
+
+            function getCookie() {
+                const cookie = document.cookie.split("; ");
+                for (let i = 0; i < cookie.length; i++) {
+                    const [name, value] = cookie[i].split("=");
+                    if (name.trim() === "theme") {
+                        return value;
                     }
                 }
-                return null;
+                return "light";
             }
 
-            function apply_saved_theme() {
-                var theme = getCookie("theme") || "light";
-                document.body.className = theme;
-            }
-
-            document.getElementById("toggle_theme").addEventListener("click", function() {
-                var current_theme = localStorage.getItem("theme") || "light";
-                var new_theme = current_theme === "light" ? "dark" : "light";
-                localStorage.setItem("theme", new_theme);
-                document.body.className = new_theme;
+            const theme_from_cookies = getCookie();
+            setTheme(theme_from_cookies);
+            
+            toggle_theme.addEventListener("click", function() {
+                let newTheme = document.body.classList.contains("dark") ? "light" : "dark";
+                setTheme(newTheme);
             });
 
             async function fetch_quote() {
                 try {
                     const response = await fetch("https://dog.ceo/api/breeds/image/random");
                     const data = await response.json();
-                    console.log(data);
-                    quotes_load.innerHTML = `<img src="${data.message}" alt="Random Dog Image" width="300">`;
+                    //console.log(data);
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok");
+                    }
+
+                    let img = document.createElement("img");
+                    img.src = data.message;
+                    img.alt = "Random Dog Image";
+                    img.width = "400";
+                    img.height = "300";
+                    quotes_load.innerHTML = "";
+                    quotes_load.appendChild(img);
                 } catch (error) {
                     quotes_load.textContent = "Unable to load quote at this time.";
                 }
