@@ -29,9 +29,9 @@
 
     <button id="toggle_theme">Toggle theme: Dark/White</button>
 
-    <h3 id="quotes">Motivational Quote Of The Day:</h3>
+    <h3 id="quotes">Random Dog Photo Of The Day:</h3>
     <p id="quotes_load"></p><br>
-    <button id="load_quote">Load Quote</button>
+    <button id="load_quote">Load Another Photo</button>
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
@@ -145,7 +145,7 @@
                     quotes_load.innerHTML = "";
                     quotes_load.appendChild(img);
                 } catch (error) {
-                    quotes_load.textContent = "Unable to load quote at this time.";
+                    quotes_load.textContent = "Unable to any cute do photos at this time.";
                 }
             }
 
