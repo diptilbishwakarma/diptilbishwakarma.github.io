@@ -24,6 +24,8 @@
         <button onclick="add_to_do()" type="submit">Add Task</button>
     </form>
 
+    <p><b>Total tasks added in this session: </b><span id="total_tasks_count">0</span></p>
+
     <p><b>Tasks remaining in this session: </b><span id="tasks_count">0</span> </p>
     <ul id="to_do_list"></ul>
 
@@ -39,11 +41,20 @@
             const to_do_form = document.getElementById("toDoForm");
             const tasks = document.getElementById("tasks");
             const to_do_list = document.getElementById("to_do_list");
+            const total_tasks_count = document.getElementById("total_tasks_count");
             const tasks_count = document.getElementById("tasks_count");
             const toggle_theme = document.getElementById("toggle_theme");
             const quotes_load = document.getElementById("quotes_load");
             const load_quote = document.getElementById("load_quote");
 
+            let session_total_tasks = sessionStorage.getItem("total_tasks_count");
+            if (session_total_tasks) {
+                session_total_tasks = parseInt(session_total_tasks);
+            }
+            else {
+                session_total_tasks = 0;
+            }
+            total_tasks_count.textContent = session_total_tasks;
 
             show_to_do_list();
             update_task_count();
@@ -60,7 +71,11 @@
 
                 const to_do_list = JSON.parse(localStorage.getItem("to_do_list")) || [];
                 to_do_list.push(to_do);
+
                 localStorage.setItem("to_do_list", JSON.stringify(to_do_list));
+                session_total_tasks += 1;
+                sessionStorage.setItem("total_tasks_count", session_total_tasks);
+                total_tasks_count.textContent = session_total_tasks;
 
                 document.getElementById("toDoForm").reset();
                 update_task_count();
@@ -76,7 +91,7 @@
                     var li = document.createElement("li");
                         li.textContent = task + " ";
 
-                    var delete_button = document.createElement("button");        //Learned this to create a break betweeen tasks so that it doesn't look cramped with each other
+                    var delete_button = document.createElement("button");
                     delete_button.textContent = "Remove";
                     delete_button.onclick = function() {
                         remove_task(index);
