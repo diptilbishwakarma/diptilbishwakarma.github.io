@@ -90,6 +90,14 @@ class VideoGame {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+
+    let header = document.createElement("h1");
+    header.textContent = "Games Collection";
+    header.style.textAlign = "left"; 
+    header.style.fontSize = "28px"; 
+    header.style.fontWeight = "bold";
+    document.body.insertBefore(header, document.getElementById("media_collection"));
+
     const gamesArray = JSON.parse(gameDataJSON);
     const mediaCont = document.getElementById('media_collection');
 
