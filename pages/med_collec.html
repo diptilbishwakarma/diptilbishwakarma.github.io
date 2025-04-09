@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Collection</title>
+    <link rel="stylesheet" type="text/css" href="../styles/style.css">
+    <script src="../scripts/script.js"></script>
+</head>
+<body>
+    <div class="settings">
+        <div class="set_color">
+            <div id="settin">
+                <h2>Settings</h2>
+            </div>
+            <label for="color">Choose a color:</label>
+
+            <label for="light"></label>
+            <input type="button" id="light" name="color" value="light" onclick="setLight()">
+            <label for="dark"></label>
+            <input type="button" id="dark" name="color" value="dark" onclick="setDark()">
+            <label for="default"></label>
+            <input type="button" id="default" name="color" value="default" onclick="setDefault()">
+        </div>
+        <p id = "stats_theme">Current Page Theme: Default</p>
+    </div>
+
+    <h1>My Game Collection</h1>
+
+    <div id="media_collection"></div>
+
+    <script src="../scripts/media.js"></script>
+
+</body>
+</html>
