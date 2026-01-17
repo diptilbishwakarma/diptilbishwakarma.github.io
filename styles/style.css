@@ -6,11 +6,12 @@ body {
     background-color: #9181ac;
     font-family: Helvetica, Arial, sans-serif;
     margin: 0;
+    transition: background-color 0.3s, color 0.3s;
 
 }
 
 body.dark_mode {
-    background-color: black;
+    background-color: rgb(37, 35, 35);
     color: white;
 }
 
@@ -22,18 +23,7 @@ body.dark_mode  .desc{
     color: white;
 }
 
-body.light_mode {
-    background-color: white;
-    color: black;
-}
 
-body.light_mode .hdng h1{
-    color: black;
-}
-
-body.light_mode .desc{
-    color: black;
-}
 
 .hdng {
     text-align: center;
@@ -42,6 +32,10 @@ body.light_mode .desc{
     margin-top: 0;
     padding-top: 24px;
     background-color: rgb(90, 37, 91);
+}
+
+.hdng h1 {
+    transition: color 0.3s;
 }
 
 .img {
@@ -53,6 +47,7 @@ body.light_mode .desc{
 .desc {
     font-size: 18px;
     margin: 8px;
+    transition: color 0.3s;
 }
 
 .infor {
@@ -76,13 +71,52 @@ body.light_mode .desc{
 .settings {
     top: 10px;
     right: 10px;
-    position: absolute;
+    position: fixed;
     z-index: 1000;
 
 }
 
-#settin {
-    text-align: center;
+
+#theme-toggle {
+    position: relative;
+    width: 60px;
+    height: 30px;
+    background-color: #ccc;
+    border-radius: 15px;
+    border: 1px solid #888;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+body.dark_mode #theme-toggle {
+    background-color: #292929;
+}
+
+#theme-knob {
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    background-color: white;
+    border-radius: 50%;
+    left: 2px;
+    transition: transform 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(33, 33, 33, 0.2);
+}
+
+body.dark_mode #theme-knob {
+    transform: translateX(30px);
+}
+
+#theme-toggle img {
+    width: 20px;
+    height: 20px;
+    display: block;
 }
 
 .stats_theme {
